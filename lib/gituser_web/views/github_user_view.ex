@@ -1,6 +1,16 @@
 defmodule GituserWeb.GithubUserView do
   use GituserWeb, :view
 
+  def render("created.json", %{user: user}) do
+    %{
+      message: "User created!",
+      user: %{
+        id: user.id,
+        password: user.password_hash
+      }
+    }
+  end
+
   def render("show_all.json", %{datas: datas}) do
     %{
       data: render_many(datas, __MODULE__, "show.json", as: :data)

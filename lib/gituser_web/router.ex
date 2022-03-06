@@ -8,6 +8,7 @@ defmodule GituserWeb.Router do
   scope "/api", GituserWeb do
     pipe_through :api
 
+    post "/user", GithubUserController, :create
     get "/user/:user_name", GithubUserController, :show_all
   end
 

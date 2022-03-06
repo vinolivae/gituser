@@ -36,4 +36,23 @@ defmodule GituserWeb.GithubUserControllerTest do
                |> json_response(404)
     end
   end
+
+  describe "/api/user" do
+    test "succeeds if user is created", %{conn: conn} do
+      assert %{
+               "message" => "User created!",
+               "user" => %{"id" => _, "password" => _}
+             } =
+               conn
+               |> post("/api/user", %{"password" => "123456"})
+               |> json_response(201)
+    end
+
+    test "fails if password is not valid", %{conn: conn} do
+      assert %{"message" => %{"password" => ["should be at least 6 character(s)"]}} =
+               conn
+               |> post("/api/user", %{"password" => "12345"})
+               |> json_response(400)
+    end
+  end
 end
