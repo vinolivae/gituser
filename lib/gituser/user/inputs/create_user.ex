@@ -10,6 +10,7 @@ defmodule Gituser.User.Inputs.CreateUser do
   def changeset(model \\ %__MODULE__{}, params) do
     model
     |> cast(params, @required)
+    |> validate_required(@required)
     |> validate_length(:password, min: 6)
   end
 end
