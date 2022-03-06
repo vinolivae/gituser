@@ -3,12 +3,12 @@
 Here we have an API that searches for information about the github repository users.
 
 Use this project if you want to understand how to consume external APIs
-using phoenix framework.
+using phoenix framework and authenticate with guardian lib.
 
-Here you will find how to consume the **github** API using **tesla** and how to test it using **bypass** and **mox**.
+Here you will find how to consume the **github** API using **tesla**, how to test it using **bypass** and **mox** but you need a token for this, hehe.
 
 ## How to use:
-- Up your docker-compose(optional).
+- Up your docker-compose(optional if you have all setup locally).
   ```
   docker-compose up -d
   ```
@@ -19,15 +19,35 @@ Here you will find how to consume the **github** API using **tesla** and how to 
 
 - Use any HTTP client to request:
 
-  route:
+### routes
+___
+  GET
   ```
-  http://localhost:4000/api/user/:user_name
+   http://localhost:4000/api/user/:user_name
   ``` 
   output:
   ```json
   {"data": [objects]}
   ```
-
+___
+  POST
+  ```
+  http://localhost:4000/api/user
+  ```
+  body
+  ```json
+  {"password": "secure_password"}
+  ```
+  output
+  ```json
+  {
+  "message": "User created!",
+  "user": {
+    "id": uuid,
+    "password": hash
+  }
+}
+  ```
 -----
 ## Learn more
 
