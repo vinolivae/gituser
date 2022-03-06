@@ -1,5 +1,7 @@
 import Config
 
+config :gituser, Gituser.User.Commands.ListUserData, github_adapter: Gituser.Clients.GithubMock
+
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used

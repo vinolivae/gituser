@@ -10,6 +10,8 @@ import Config
 config :gituser,
   ecto_repos: [Gituser.Repo]
 
+config :gituser, Gituser.User.Commands.ListUserData, github_adapter: Gituser.Clients.Github
+
 # Configures the endpoint
 config :gituser, GituserWeb.Endpoint,
   url: [host: "localhost"],
