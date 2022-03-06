@@ -7,6 +7,8 @@ defmodule GituserWeb.Router do
 
   scope "/api", GituserWeb do
     pipe_through :api
+
+    get "/user/:user_name", GithubUserController, :show_all
   end
 
   # Enables the Swoosh mailbox preview in development.
