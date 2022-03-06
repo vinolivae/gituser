@@ -10,10 +10,11 @@ defmodule Gituser.User.Commands.ListUserDataTest do
         {:ok, build_list(2, :user_repo)}
       end)
 
-      assert [
-               %{description: _, html_url: _, id: _, name: _, stargazers_count: _},
-               %{description: _, html_url: _, id: _, name: _, stargazers_count: _}
-             ] = ListUserData.execute("a_user")
+      assert {:ok,
+              [
+                %{description: _, html_url: _, id: _, name: _, stargazers_count: _},
+                %{description: _, html_url: _, id: _, name: _, stargazers_count: _}
+              ]} = ListUserData.execute("a_user")
     end
 
     test "fails if user not exists" do

@@ -1,8 +1,12 @@
 defmodule Gituser.User.Commands.ListUserData do
   def execute(user_name) do
     case github_client().user_repos(user_name) do
-      {:ok, user_datas} -> Enum.map(user_datas, &build_user_data/1)
-      error -> error
+      {:ok, user_datas} ->
+        datas = Enum.map(user_datas, &build_user_data/1)
+        {:ok, datas}
+
+      error ->
+        error
     end
   end
 
