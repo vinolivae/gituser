@@ -1,4 +1,5 @@
 defmodule Gituser.User.Commands.ListUserData do
+  @spec execute(user_name :: String.t()) :: {:ok, User.t()} | {:error, :not_found}
   def execute(user_name) do
     case github_client().user_repos(user_name) do
       {:ok, user_datas} ->

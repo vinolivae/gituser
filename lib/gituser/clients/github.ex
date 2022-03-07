@@ -1,4 +1,9 @@
 defmodule Gituser.Clients.Github do
+  @moduledoc """
+  This module provides a client for the Github API.
+
+  Check out the Tesla documentation at: https://github.com/teamon/tesla
+  """
   use Tesla
 
   alias Gituser.Clients.GithubBehaviour
@@ -12,7 +17,7 @@ defmodule Gituser.Clients.Github do
   @base_url "https://api.github.com"
 
   @doc """
-  Return a list with all user repos.
+  Return a list with all user repos based on the given github username.
 
   iex > alias Gituser.Clients.Github
   iex > Github.user_repos("valid_user")

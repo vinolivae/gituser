@@ -1,4 +1,7 @@
 defmodule Gituser.User.Inputs.CreateUser do
+  @moduledoc """
+  This module contains the inputs for the validate a user before its created.
+  """
   use Gituser.EmbeddedSchema
 
   @required [:password]
@@ -7,6 +10,7 @@ defmodule Gituser.User.Inputs.CreateUser do
     field :password, :string
   end
 
+  @doc false
   def changeset(model \\ %__MODULE__{}, params) do
     model
     |> cast(params, @required)
