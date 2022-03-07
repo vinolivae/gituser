@@ -12,6 +12,14 @@ config :gituser,
 
 config :gituser, Gituser.User.Commands.ListUserData, github_adapter: Gituser.Clients.Github
 
+config :gituser, GituserWeb.Auth.Guardian,
+  issuer: "gituser",
+  secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
+
+config :gituser, GituserWeb.Auth.Pipeline,
+  module: GituserWeb.Auth.Guardian,
+  error_handler: GituserWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :gituser, GituserWeb.Endpoint,
   url: [host: "localhost"],
