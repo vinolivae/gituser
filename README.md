@@ -41,14 +41,30 @@ ___
   output
   ```json
   {
-  "message": "User created!",
-  "user": {
-    "id": uuid,
-    "password": hash
+    "message": "User created!",
+    "user": {
+      "id": uuid,
+      "password": hash
+    }
   }
-}
   ```
------
+___
+POST
+```
+  http://localhost:4000/api/user/login
+  ```
+  body
+  ```json
+  {"password": "secure_password", "id": uuid}
+  ```
+  output
+  ```json
+  {
+    "message": "User signined!",
+    "token": JWT
+  }
+  ```
+---
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
