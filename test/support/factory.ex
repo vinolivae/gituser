@@ -1,5 +1,6 @@
 defmodule Gituser.Factory do
   use ExMachina.Ecto, repo: Gituser.Repo
+  alias Gituser.Schemas.User
 
   def user_repo_factory do
     %{
@@ -9,5 +10,9 @@ defmodule Gituser.Factory do
       name: "example",
       stargazers_count: 0
     }
+  end
+
+  def user_factory do
+    %User{password: "123456"}
   end
 end

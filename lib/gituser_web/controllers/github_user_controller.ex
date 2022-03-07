@@ -2,10 +2,12 @@ defmodule GituserWeb.GithubUserController do
   use GituserWeb, :controller
 
   alias Gituser
-  alias GituserWeb.FallbackController
 
-  alias Gituser.User.Inputs.CreateUser
+  alias Gituser.User.Inputs.{CreateUser, Signin}
   alias Gituser.ChangesetValidation
+
+  alias GituserWeb.Auth.Guardian
+  alias GituserWeb.FallbackController
 
   action_fallback FallbackController
 
@@ -15,6 +17,15 @@ defmodule GituserWeb.GithubUserController do
       conn
       |> put_status(:created)
       |> render("created.json", user: user)
+    end
+  end
+
+  def signin(conn, params) do
+    with {:ok, input} <- ChangesetValidation.cast_and_apply(Signin, params),
+         {:ok, token} <- Guardian.authenticate(input) do
+      conn
+      |> put_status(:created)
+      |> render("signin.json", token: token)
     end
   end
 

@@ -5,11 +5,21 @@ defmodule GituserWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug GituserWeb.Auth.Pipeline
+  end
+
+  scope "/api", GituserWeb do
+    pipe_through [:api, :auth]
+
+    get "/user/:user_name", GithubUserController, :show_all
+  end
+
   scope "/api", GituserWeb do
     pipe_through :api
 
     post "/user", GithubUserController, :create
-    get "/user/:user_name", GithubUserController, :show_all
+    post "/user/login", GithubUserController, :signin
   end
 
   # Enables the Swoosh mailbox preview in development.

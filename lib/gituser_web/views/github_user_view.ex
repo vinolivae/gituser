@@ -11,6 +11,13 @@ defmodule GituserWeb.GithubUserView do
     }
   end
 
+  def render("signin.json", %{token: token}) do
+    %{
+      message: "User signined!",
+      token: token
+    }
+  end
+
   def render("show_all.json", %{datas: datas}) do
     %{
       data: render_many(datas, __MODULE__, "show.json", as: :data)
