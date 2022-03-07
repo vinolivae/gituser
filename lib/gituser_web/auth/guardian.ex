@@ -37,7 +37,7 @@ defmodule GituserWeb.Auth.Guardian do
   def authenticate(%{id: user_id, password: password}) do
     with {:ok, %User{password_hash: hash} = user} <- GetUser.by_id(user_id),
          {:valid_pass?, true} <- {:valid_pass?, Pbkdf2.verify_pass(password, hash)},
-         {:ok, token, _claims} <- encode_and_sign(user) do
+         {:ok, token, _claims} <- encode_and_sign(user, %{}, ttl: {1, :minute}) do
       {:ok, token}
     else
       {:valid_pass?, false} -> {:error, :unauthorized}
